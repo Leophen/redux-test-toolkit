@@ -36,7 +36,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/store/reducers/counter.js", "src/App.jsx"  ],
   "exclude": [
     "node_modules"
   ]
