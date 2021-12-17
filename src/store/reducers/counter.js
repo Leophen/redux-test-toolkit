@@ -1,5 +1,10 @@
 import * as actions from '../actions'
-import * as actionTypes from '../actionTypes'
+// import * as actionTypes from '../actionTypes'
+import { createAction } from '@reduxjs/toolkit'
+
+const addCount = createAction('ADD_COUNT')
+const subCount = createAction('SUB_COUNT')
+const multiCount = createAction('MULTI_COUNT')
 
 const defaultState = {
   count: 0
@@ -7,11 +12,11 @@ const defaultState = {
 
 export default function counter(state = defaultState, action) {
   switch (action.type) {
-    case actionTypes.ADD_COUNT:
+    case addCount.type:
       return actions.handleAddCount(state, action)
-    case actionTypes.SUB_COUNT:
+    case subCount.type:
       return actions.handleSubCount(state, action)
-    case actionTypes.MULTI_COUNT:
+    case multiCount.type:
       return actions.handleMultiCount(state, action)
     default:
       return state
