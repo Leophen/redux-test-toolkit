@@ -15,3 +15,7 @@ export const handleMultiCount = (state, action) => {
   newState.count *= action.payload
   return newState
 }
+
+export const handlePrintApi = (state, action) => {
+  console.log(state, action)
+}

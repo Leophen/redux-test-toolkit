@@ -1,28 +1,34 @@
 import * as actions from '../actions'
-import { createAction, createReducer, createSlice } from '@reduxjs/toolkit'
-
-export const addCount = createAction('ADD_COUNT')
-export const subCount = createAction('SUB_COUNT')
-export const multiCount = createAction('MULTI_COUNT')
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 const defaultState = {
   count: 0
 }
 
-const counter = createReducer(defaultState, {
-  [addCount]: (state, action) => actions.handleAddCount(state, action),
-  [subCount]: (state, action) => actions.handleSubCount(state, action),
-  [multiCount]: (state, action) => actions.handleMultiCount(state, action)
-})
+export const fetchMusicInfo = createAsyncThunk(
+  'counter/fetchMusicInfo',
+  async (name) => {
+    const res = await axios.get(
+      `https://api.apiopen.top/searchMusic?name=${name}`
+    )
+    return res.data
+  }
+)
 
-// const c2 = createSlice({
-//   name: 'counter',
-//   initialState: defaultState,
-//   reducers: {
-//     addCount: (state, action) => actions.handleAddCount(state, action),
-//     subCount: (state, action) => actions.handleSubCount(state, action),
-//     multiCount: (state, action) => actions.handleMultiCount(state, action)
-//   }
-// })
+const counter = createSlice({
+  name: 'counter',
+  initialState: defaultState,
+  reducers: {
+    addCount: (state, action) => actions.handleAddCount(state, action),
+    subCount: (state, action) => actions.handleSubCount(state, action),
+    multiCount: (state, action) => actions.handleMultiCount(state, action)
+  },
+  extraReducers: {
+    [fetchMusicInfo.fulfilled]: (state, action) => {
+      console.log(action)
+    }
+  }
+})
 
 export default counter
