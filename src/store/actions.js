@@ -16,6 +16,7 @@ export const handleMultiCount = (state, action) => {
   return newState
 }
 
-export const handlePrintApi = (state, action) => {
-  console.log(state, action)
+export const handleGetTemperature = (state, action) => {
+  console.log(action)
+  state.temperature = action.payload.data.wendu
 }

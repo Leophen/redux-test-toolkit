@@ -1,6 +1,12 @@
-div {
-  padding: 20px 100px;
+.count-container,
+.music-container {
+  margin: 100px;
   button {
     margin-right: 8px;
+  }
+  p {
+    span {
+      color: dodgerblue;
+    }
   }
 }
