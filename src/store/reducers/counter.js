@@ -1,5 +1,9 @@
 import * as actions from '../actions'
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import {
+  createSlice,
+  createAsyncThunk,
+  createEntityAdapter
+} from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const defaultState = {
@@ -17,13 +21,22 @@ export const fetchTemperature = createAsyncThunk(
   }
 )
 
+const playersAdapter = createEntityAdapter({
+  // 将数组对象中每个对象的 id 属性存放在 Adapter 的 IDs 中
+  selectId: (player) => player.id,
+  // 将 IDs 中对应的每个对象以 id 为指定规则进行排序
+  sortComparer: (a, b) => a - b
+})
+
 const counter = createSlice({
   name: 'counter',
-  initialState: defaultState,
+  initialState: playersAdapter.getInitialState(defaultState),
   reducers: {
     addCount: (state, action) => actions.handleAddCount(state, action),
     subCount: (state, action) => actions.handleSubCount(state, action),
-    multiCount: (state, action) => actions.handleMultiCount(state, action)
+    multiCount: (state, action) => actions.handleMultiCount(state, action),
+    // 添加一个 player 实体
+    playerAdd: playersAdapter.addOne
   },
   extraReducers: {
     [fetchTemperature.fulfilled]: (state, action) => {
