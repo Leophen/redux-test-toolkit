@@ -35,7 +35,6 @@ const counter = createSlice({
     addCount: (state, action) => actions.handleAddCount(state, action),
     subCount: (state, action) => actions.handleSubCount(state, action),
     multiCount: (state, action) => actions.handleMultiCount(state, action),
-    // 添加一个 player 实体
     playerAdd: playersAdapter.addOne
   },
   extraReducers: {
