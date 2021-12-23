@@ -2,7 +2,8 @@ import * as actions from '../actions'
 import {
   createSlice,
   createAsyncThunk,
-  createEntityAdapter
+  createEntityAdapter,
+  createSelector
 } from '@reduxjs/toolkit'
 import axios from 'axios'
 
@@ -27,6 +28,21 @@ const playersAdapter = createEntityAdapter({
   // 将 IDs 中对应的每个对象以 id 为指定规则进行排序
   sortComparer: (a, b) => a - b
 })
+
+const testState = {
+  a: 1,
+  b: 2,
+  c: 3
+}
+
+const addValue = createSelector(
+  (state) => state.a,
+  (state) => state.b,
+  (state) => state.c,
+  (value1, value2, value3) => value1 + value2 + value3
+)
+
+console.log(addValue(testState)) // 6
 
 const counter = createSlice({
   name: 'counter',
