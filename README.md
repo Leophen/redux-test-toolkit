@@ -443,3 +443,24 @@ yarn add @reduxjs/toolkit
 ## 七、createSelector 组件
 
 来自 [Reselect](https://github.com/reduxjs/reselect) 库，被重新导出，用于 state 缓存，防止不必要的计算。
+
+举个例子：
+
+```js
+const testState = {
+  a: 1,
+  b: 2,
+  c: 3
+}
+
+const addValue = createSelector(
+  (state) => state.a,
+  (state) => state.b,
+  (state) => state.c,
+  (value1, value2, value3) => value1 + value2 + value3
+)
+
+console.log(addValue(testState)) // 6
+```
+
+上面在 `createSelector` 的最后一个参数中进行前面参数结果的缓存处理。
