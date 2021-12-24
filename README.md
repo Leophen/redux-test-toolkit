@@ -460,7 +460,13 @@ const addValue = createSelector(
   (value1, value2, value3) => value1 + value2 + value3
 )
 
+const addValue2 = createSelector(
+  [state.a,state.b,state.c],
+  (value1, value2, value3) => value1 + value2 + value3
+)
+
 console.log(addValue(testState)) // 6
+console.log(addValue2(testState)) // 6
 ```
 
 上面在 `createSelector` 的最后一个参数中进行前面参数结果的缓存处理。

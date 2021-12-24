@@ -42,7 +42,13 @@ const addValue = createSelector(
   (value1, value2, value3) => value1 + value2 + value3
 )
 
+const addValue2 = createSelector(
+  [(state) => state.a, (state) => state.b, (state) => state.c],
+  (value1, value2, value3) => value1 + value2 + value3
+)
+
 console.log(addValue(testState)) // 6
+console.log(addValue2(testState)) // 6
 
 const counter = createSlice({
   name: 'counter',
